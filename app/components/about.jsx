@@ -23,7 +23,10 @@ var React = require('react');
 //stateless function with arrow function
 var about = (props) => {
     return(
-        <h3>About Component</h3>
+        <div>
+            <h3>About</h3>
+            <p>Welcome the to the about page - the only thing it's about is itself</p>
+        </div>
     )
 };
 
