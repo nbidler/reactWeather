@@ -1,6 +1,27 @@
+//Part 1 - how to make sure webpack understands '$' means 'jquery'
+var webpack = require('webpack');
+
 module.exports = {
-    //point of entry for webpack to look for
-    entry: './app/app.jsx',
+    //point of entry for webpack to look for js files
+    entry: [
+        'script!jquery/dist/jquery.min.js',
+        'script!foundation-sites/dist/foundation.min.js',
+        './app/app.jsx'],
+    //key-value pairs where
+    //  key - module name
+    //  value - the variable name we want available in our 'external script' files
+    externals: {
+        jquery: 'jQuery'
+    },
+    //
+    plugins: [
+        //Part 2 - how to make sure webpack understands '$' means 'jquery'
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery'
+        })
+    ],
+
     //output to
     output: {
         path: __dirname,
