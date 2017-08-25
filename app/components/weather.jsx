@@ -51,7 +51,7 @@ var weather = React.createClass({
 
         function renderMessage (){
             if (isLoading){
-                return <h3>Fetching data...</h3>
+                return <h3 className="text-center">Fetching data...</h3>
             }
             else if(temp && location){
                 return <WeatherMessage location={location} temp={temp}/>;
@@ -60,7 +60,7 @@ var weather = React.createClass({
 
         return(
         <div>
-            <h3>Weather Component</h3>
+            <h1 className="text-center">Get Weather</h1>
             <WeatherForm onSearch={this.handleSearch}/>
             {/*to render only under certain conditions, a function declared inside Render can be passed -
                 its return statement should be the intended message to display.
