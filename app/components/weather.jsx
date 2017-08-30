@@ -3,6 +3,7 @@ var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
 var openWeatherMap = require('openWeatherMap');
+var errorModal = require('errorModal');
 
 // arrow function cannot be used on Weather like it can be for About
 // because it defines all kinds of custom methods and it maintains a state
@@ -22,7 +23,10 @@ var weather = React.createClass({
         // });
         var self = this;
 
-        this.setState({isLoading:true});
+        this.setState({
+            isLoading:true,
+            errorMessage: undefined
+        });
 
         openWeatherMap.getTemp(location).then(
             function(data){
@@ -32,11 +36,12 @@ var weather = React.createClass({
                     isLoading: false
                 });
             },
-            function(errorMessage){
+            function(e){
                 self.setState({
-                    isLoading: false
+                    isLoading: false,
+                    errorMessage: e.message
                 });
-                alert(errorMessage);
+                // alert(e);
             }
         )
     },
@@ -46,7 +51,7 @@ var weather = React.createClass({
         // var stateLocation = this.state.location;
 
         //instructor solution - which is neat and I did not think to try
-        var{isLoading, temp, location} = this.state;
+        var{isLoading, temp, location, errorMessage} = this.state;
 
 
         function renderMessage (){
@@ -55,6 +60,14 @@ var weather = React.createClass({
             }
             else if(temp && location){
                 return <WeatherMessage location={location} temp={temp}/>;
+            }
+        }
+
+        function renderError() {
+            if (typeof errorMessage === 'string') {
+                return (
+                    <errorModal/>
+                )
             }
         }
 
@@ -67,6 +80,7 @@ var weather = React.createClass({
                 for example, the line below will be shown differently based on the function's return statement*/}
             {/*<WeatherMessage location={location} temp={temp}/>*/}
             {renderMessage()}
+            {renderError()}
         </div>
         );
     }
