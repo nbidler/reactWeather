@@ -25,7 +25,7 @@ module.exports = {
             },
             //response failed
             function(response){
-                throw new Error(response.data.message);
+                throw new Error(response.message);
             }
         );
     }
