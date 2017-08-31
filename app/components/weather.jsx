@@ -3,7 +3,7 @@ var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
 var openWeatherMap = require('openWeatherMap');
-var errorModal = require('errorModal');
+var ErrorModal = require('errorModal');
 
 // arrow function cannot be used on Weather like it can be for About
 // because it defines all kinds of custom methods and it maintains a state
@@ -66,7 +66,7 @@ var weather = React.createClass({
         function renderError() {
             if (typeof errorMessage === 'string') {
                 return (
-                    <errorModal/>
+                    <ErrorModal message={errorMessage}/>
                 )
             }
         }
