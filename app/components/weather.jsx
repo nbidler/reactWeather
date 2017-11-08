@@ -24,6 +24,8 @@ var weather = React.createClass({
         var self = this;
 
         this.setState({
+            location: undefined,
+            temp: undefined,
             isLoading:true,
             errorMessage: undefined
         });
@@ -44,6 +46,24 @@ var weather = React.createClass({
                 // alert(e);
             }
         )
+    },
+
+    componentDidMount: function() {
+        var location = this.props.location.query.location;
+
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+    },
+
+    componentWillReceiveProps: function(newProps) {
+        var location = newProps.location.query.location;
+
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
     },
 
     render: function() {
