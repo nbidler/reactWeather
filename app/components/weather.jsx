@@ -73,7 +73,7 @@ var weather = React.createClass({
 
         return(
         <div>
-            <h1 className="text-center">Get Weather</h1>
+            <h1 className="text-center page-title">Get Weather</h1>
             <WeatherForm onSearch={this.handleSearch}/>
             {/*to render only under certain conditions, a function declared inside Render can be passed -
                 its return statement should be the intended message to display.

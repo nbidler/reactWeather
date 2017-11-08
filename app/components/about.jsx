@@ -24,7 +24,7 @@ var React = require('react');
 var about = (props) => {
     return(
         <div>
-            <h1 className="text-center">About</h1>
+            <h1 className="text-center page-title">About</h1>
             <p>This is just a small project to query a <a href="http://openweathermap.org/api">free weather API</a> to give temperature information.</p>
             <p>The <i>reason</i> I did this was to get my feet wet using <a href="https://facebook.github.io/react/">ReactJS</a>, because (at time of writing)
                 it is one of the big three javascript libraries; hopefully knowing all three will let me net stable employment and enough cash to
